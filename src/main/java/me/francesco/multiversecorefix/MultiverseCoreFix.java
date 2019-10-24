@@ -10,11 +10,14 @@ public final class MultiverseCoreFix extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        new MultiverseCoreFixCommand(this);
+
+        getCommand("mvcfix").setExecutor(new MultiverseCoreFixCommand(this));
         getServer().getPluginManager().registerEvents(new CommandListener(this), this);
+
         if(isMVCEnabled())
-        getLogger().info(ChatColor.translateAlternateColorCodes('&',"&b&l[&e&lMultiverse-CoreFix&b&l]&a enable without errors"));
-        else getLogger().info(ChatColor.translateAlternateColorCodes('&', "&b&l[&e&lMultiverse-CoreFix&b&l]&4MultiverseCore not found"));
+            getLogger().info(ChatColor.translateAlternateColorCodes('&',"&b&l[&e&lMultiverse-CoreFix&b&l]&a enable without errors"));
+        else
+            getLogger().info(ChatColor.translateAlternateColorCodes('&', "&b&l[&e&lMultiverse-CoreFix&b&l]&4MultiverseCore not found"));
     }
 
     @Override
