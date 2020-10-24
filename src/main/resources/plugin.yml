@@ -1,9 +1,10 @@
 name: Multiverse-CoreFix
-version: 1.2
+version: 2.0
 main: me.francesco.multiversecorefix.MultiverseCoreFix
 authors: [Pompiere1]
 description: A simple add-on for fix the latest known bug for Multiverse-Core
 softdepend: [Multiverse-Core]
+depend: [PowerLib]
 commands:
   mvcfix:
     aliases: [mvcf, multiverse-corefix, multiversecorefix]
