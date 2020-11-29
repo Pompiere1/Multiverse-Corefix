@@ -30,12 +30,10 @@ public class CommandListener implements Listener {
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
-        System.out.println("#1");
         String command = e.getMessage().replaceFirst("/", "");
         if (!command.startsWith("mv") && !command.startsWith("multiverse")) {
             return;
         }
-        System.out.println("#2");
         Player player = e.getPlayer();
         for (String s : config.getStringList("mv-disabled-characters")) {
             if (command.contains(s)) {
@@ -59,7 +57,6 @@ public class CommandListener implements Listener {
         }
 
         if (e.getSender() instanceof ConsoleCommandSender) {
-            System.out.println("E' LA CONSOLE");
             return;
         }
         for (String s : config.getStringList("mv-disabled-characters")) {
@@ -76,23 +73,26 @@ public class CommandListener implements Listener {
     }
 
     public void alert() {
-        if (config.getBoolean("alert-on-command.alert-in-game")) {
-            if (config.getBoolean("alert-on-command.permission")) {
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.hasPermission("test")) {
-                        new Message(lang.getString("Messages.alert")).send(p);
-                    }
+        if (!config.getBoolean("alert-on-command.alert-in-game"))
+            return;
+
+        if (config.getBoolean("alert-on-command.permission")) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p.hasPermission("test")) {
+                    new Message(lang.getString("Messages.alert")).send(p);
                 }
             }
-            if (config.getBoolean("alert-on-command.op")) {
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    if (p.isOp()) {
-                        new Message(lang.getString("Messages.alert")).send(p);
-                    }
+        }
+
+        if (config.getBoolean("alert-on-command.op")) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p.isOp()) {
+                    new Message(lang.getString("Messages.alert")).send(p);
                 }
             }
         }
     }
+
 
     public void punish(CommandSender sender) {
         String reason = new Message(lang.getString("Messages.kick-ban-reason")).getText();

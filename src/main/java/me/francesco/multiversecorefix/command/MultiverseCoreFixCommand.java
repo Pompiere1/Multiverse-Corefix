@@ -28,7 +28,6 @@ public class MultiverseCoreFixCommand implements CommandExecutor {
                     .getString("Messages.no-permission"))
                     .addPlaceHolder("{prefix}", prefix)
                     .send(sender);
-            System.out.println("Ciao");
             return true;
         }
         if (args.length > 0) {

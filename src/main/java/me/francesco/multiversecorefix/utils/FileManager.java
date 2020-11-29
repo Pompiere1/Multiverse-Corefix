@@ -42,9 +42,8 @@ public class FileManager {
     }
 
     public void reloadFiles() {
-        System.out.println("Reload");
+        configManager.reloadAll();
         reloadConfig();
         reloadLang();
-        configManager.reloadAll();
     }
 }
